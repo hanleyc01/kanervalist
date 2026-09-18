@@ -208,7 +208,7 @@ Listing&nbsp;2
 </figure>
 </div>
 <p>A less type-safe (and hence, easier) way of interacting with lists is through the <em>car</em> and <em>cdr</em> functions (following LISP), which correspond to the second branch in <a href="#lst-list-recursion" class="quarto-xref">Listing&nbsp;2</a>.</p>
-<div id="6f844ac6" class="cell" data-execution_count="3">
+<div id="48a84006" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> car[T](<span class="bu">list</span>: List[T]) <span class="op">-&gt;</span> T:</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">match</span> <span class="bu">list</span>:</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> Nil():</span>
@@ -707,7 +707,7 @@ Listing&nbsp;5
 \end{align*}
 \]</span></p>
 <p>The naïve approach can be operationalized using HRRs as follows:</p>
-<div id="042e755e" class="cell" data-execution_count="8">
+<div id="65b9c788" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">41</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> <span class="dv">5_000</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> <span class="fl">0.3</span> <span class="co"># High theta because we don't use cleanup memories</span></span>

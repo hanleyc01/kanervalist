@@ -156,7 +156,7 @@ window.Quarto = {
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Vector Symbolic Architectures, or Hyperdimensional Computing (VSA/HDC) is a model of computation using high-dimensional vectors that supports compositional, systematic, and generative patterns <span class="citation" data-cites="smolenskyTensorProductVariable1990 plateHolographicReducedRepresentations1995 kanervaHyperdimensionalComputingIntroduction2009 gaylerVectorSymbolicArchitectures2004">(<a href="#ref-smolenskyTensorProductVariable1990" role="doc-biblioref">Smolensky 1990</a>; <a href="#ref-plateHolographicReducedRepresentations1995" role="doc-biblioref">Plate 1995</a>; <a href="#ref-kanervaHyperdimensionalComputingIntroduction2009" role="doc-biblioref">Kanerva 2009</a>; <a href="#ref-gaylerVectorSymbolicArchitectures2004" role="doc-biblioref">Gayler 2004</a>)</span>. A common data structure that VSA/HDC is required to represent are <em>lists</em>. In this document, we will explore two distinct methods for encoding lists in VSA. The first, what we call <em>Kanerva</em> lists after <span class="citation" data-cites="kanervaComputing10000bitWords2014">Kanerva (<a href="#ref-kanervaComputing10000bitWords2014" role="doc-biblioref">2014</a>)</span>; the second, we call <em>role-filler</em> lists, which are used in <span class="citation" data-cites="tomkins-flanaganHeyPenttiWe2025">Tomkins-Flanagan and Kelly (<a href="#ref-tomkins-flanaganHeyPenttiWe2025" role="doc-biblioref">2025</a>)</span> and <span class="citation" data-cites="hanleyHeyPenttiWe2025">Hanley, Tomkins-Flanagan, and Kelly (<a href="#ref-hanleyHeyPenttiWe2025" role="doc-biblioref">2025</a>)</span>.</p>
+<p>Thought seems to be structured. How can networks of connected units like neurons have structure? McCulloch and Pitts demonstrated that, under certain assumptions, artificial neural networks are equivalent to a simple propositional logic <span class="citation" data-cites="mccullochPitts1942">(<a href="#ref-mccullochPitts1942" role="doc-biblioref">McCulloch and Pitts 1943</a>)</span>. So too has it been demonstrated that neural networks can exhibit the same systematic, compositional, and generative relations that psychological states are taken to have <span class="citation" data-cites="fodorConnectionismCognitiveArchitecture1988 smolenskyTensorProductVariable1990 plateHolographicReducedRepresentations1995 gaylerVectorSymbolicArchitectures2004">(see <a href="#ref-fodorConnectionismCognitiveArchitecture1988" role="doc-biblioref">Fodor and Pylyshyn 1988</a>; <a href="#ref-smolenskyTensorProductVariable1990" role="doc-biblioref">Smolensky 1990</a>; and also <a href="#ref-plateHolographicReducedRepresentations1995" role="doc-biblioref">Plate 1995</a>; <a href="#ref-gaylerVectorSymbolicArchitectures2004" role="doc-biblioref">Gayler 2004</a>)</span>. Likewise, programming languages like the linearly typed lambda calculus <span class="citation" data-cites="velez-ginorioCompilingLinearNeurons2026 velez-ginorioCompilingRecurrentNeurons2026">(<a href="#ref-velez-ginorioCompilingLinearNeurons2026" role="doc-biblioref">Velez-Ginorio et al. 2026a</a>; and <a href="#ref-velez-ginorioCompilingRecurrentNeurons2026" role="doc-biblioref">Velez-Ginorio et al. 2026b</a>)</span> and LISP <span class="citation" data-cites="tomkins-flanaganHeyPenttiWe2025 hanleyHeyPenttiWe2025">(<a href="#ref-tomkins-flanaganHeyPenttiWe2025" role="doc-biblioref">Tomkins-Flanagan and Kelly 2025</a>; <a href="#ref-hanleyHeyPenttiWe2025" role="doc-biblioref">Hanley, Tomkins-Flanagan, and Kelly 2025</a>)</span> are able to be represented Vector Symbolic Architectures, or Hyperdimensional Computing (VSA/HDC) is a model of computation using high-dimensional vectors that supports compositional, systematic, and generative patterns <span class="citation" data-cites="smolenskyTensorProductVariable1990 plateHolographicReducedRepresentations1995 kanervaHyperdimensionalComputingIntroduction2009 gaylerVectorSymbolicArchitectures2004">(<a href="#ref-smolenskyTensorProductVariable1990" role="doc-biblioref">Smolensky 1990</a>; <a href="#ref-plateHolographicReducedRepresentations1995" role="doc-biblioref">Plate 1995</a>; <a href="#ref-kanervaHyperdimensionalComputingIntroduction2009" role="doc-biblioref">Kanerva 2009</a>; <a href="#ref-gaylerVectorSymbolicArchitectures2004" role="doc-biblioref">Gayler 2004</a>)</span>. A common data structure that VSA/HDC is required to represent are <em>lists</em>. In this document, we will explore two distinct methods for encoding lists in VSA. The first, what we call <em>Kanerva</em> lists after <span class="citation" data-cites="kanervaComputing10000bitWords2014">Kanerva (<a href="#ref-kanervaComputing10000bitWords2014" role="doc-biblioref">2014</a>)</span>; the second, we call <em>role-filler</em> lists, which are used in <span class="citation" data-cites="tomkins-flanaganHeyPenttiWe2025">Tomkins-Flanagan and Kelly (<a href="#ref-tomkins-flanaganHeyPenttiWe2025" role="doc-biblioref">2025</a>)</span> and <span class="citation" data-cites="hanleyHeyPenttiWe2025">Hanley, Tomkins-Flanagan, and Kelly (<a href="#ref-hanleyHeyPenttiWe2025" role="doc-biblioref">2025</a>)</span>.</p>
 </section>
 <section id="lists" class="level2">
 <h2 class="anchored" data-anchor-id="lists">Lists</h2>
@@ -208,7 +208,7 @@ Listing&nbsp;2
 </figure>
 </div>
 <p>A less type-safe (and hence, easier) way of interacting with lists is through the <em>car</em> and <em>cdr</em> functions (following LISP), which correspond to the second branch in <a href="#lst-list-recursion" class="quarto-xref">Listing&nbsp;2</a>.</p>
-<div id="48a84006" class="cell" data-execution_count="3">
+<div id="ec2640b7" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> car[T](<span class="bu">list</span>: List[T]) <span class="op">-&gt;</span> T:</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">match</span> <span class="bu">list</span>:</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> Nil():</span>
@@ -327,7 +327,7 @@ Listing&nbsp;3
 <li>The similarity function is <em>absolute cosine similarity</em>: <span class="math display">\[
 x_1 \sim x_2 = \operatorname{abs}\left(\frac{x_1^\top x_2}{|x_1|_2 |x_2|_2}\right);
 \]</span></li>
-<li>Binding is <em>circular convlution</em>: <span class="math display">\[
+<li>Binding is <em>circular convolution</em>: <span class="math display">\[
 x_1 \otimes x_2 = \mathcal{F}^{-1}\left[ \mathcal{F}(x_1) \odot \mathcal{F}(x_2)  \right],
 \]</span> and unbinding <em>circular correlation</em>: <span class="math display">\[
 x_1 \otimes^{-1} x_2 = \mathcal{F}^{-1} \left[ \overline{\mathcal{F}(x_1)} \odot \mathcal{F}(y) \right];
@@ -695,19 +695,17 @@ Listing&nbsp;5
 <p>Atomic objects like <span class="math inline">\(\operatorname{Nil}_A\)</span> are represented in VSAs by randomly sampled vectors from the pattern set of the VSA. For ease of use, we store them in maps called <em>codebooks</em>, <span class="math inline">\(\mathsf{C}\)</span>, and index the vectors by names<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. Let <span class="math inline">\(\mathbf{nil}\)</span> be sampled in the pattern set of some VSA, <span class="math inline">\(\mathcal{V}\)</span>.</p>
 <p>There are many potential ways for getting equivalent behavior to the constructor <span class="math inline">\(\operatorname{List}(x, l)\)</span>. In the following, we will investigate three options: a <em>naïve</em> encoding that combines elements by binding; the <em>Kanerva</em> encoding, which combines elements by permutations; and the <em>role-filler</em> encoding, which tags elements by a <em>role</em> vector symbol.</p>
 <section id="naïve-encoding" class="level3">
-<h3 class="anchored" data-anchor-id="naïve-encoding">Naïve encoding</h3>
+<h3 class="anchored" data-anchor-id="naïve-encoding">❌ Naïve encoding</h3>
 <p>The <em>naïve</em> encoding of lists is a straightforward, though memory intensive, method for mirroring the behavior of lists. Recall, we have already defined a vector symbol <span class="math inline">\(\mathbf{nil}\)</span>. Let <span class="math inline">\(\mathbf a, \mathbf b, \dots\)</span> be more arbitrary vector symbols from the pattern set of our VSA. Then to perform the naïve encoding. Then, we can encode a list as a plain binding: <span class="math display">\[
-\begin{align*}
-\mathbf{a} \otimes l
-\end{align*}
+\operatorname{cons}_\text{Naive}(\mathbf a, \mathbf b) = \mathbf{a} \otimes l
 \]</span> where <span class="math inline">\(l\)</span> is some previously bound expression. To destruct a list expression, consider the first case where <span class="math inline">\(l = \mathbf{nil}\)</span>. Then, we can test if <span class="math inline">\(l \sim \mathbf{nil} &gt; \theta\)</span>, for some arbitrary threshold <span class="math inline">\(\theta\)</span>. For the case where <span class="math inline">\(l = \mathbf{a} \otimes l'\)</span><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>, the head can be retrieved by unbinding <span class="math inline">\(l\)</span> by <span class="math inline">\(l'\)</span>; and the tail can be retrieved by unbinding <span class="math inline">\(l\)</span> by <span class="math inline">\(\mathbf a\)</span>: <span class="math display">\[
 \begin{align*}
-    \operatorname{car}(l) &amp;= l' \otimes^{-1} (\mathbf a \otimes l'), \\
-    \operatorname{cdr}(l) &amp;= \mathbf a \otimes^{-1} (\mathbf a \otimes l').
+    \operatorname{car}_\text{Naive}(l) &amp;= l' \otimes^{-1} (\mathbf a \otimes l'), \\
+    \operatorname{cdr}_\text{Naive}(l) &amp;= \mathbf a \otimes^{-1} (\mathbf a \otimes l').
 \end{align*}
 \]</span></p>
 <p>The naïve approach can be operationalized using HRRs as follows:</p>
-<div id="65b9c788" class="cell" data-execution_count="8">
+<div id="5f3e4f41" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">41</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> <span class="dv">5_000</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> <span class="fl">0.3</span> <span class="co"># High theta because we don't use cleanup memories</span></span>
@@ -726,13 +724,109 @@ Listing&nbsp;5
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>tail <span class="op">=</span> l <span class="op">/</span> a</span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span>(tail.sim(nil) <span class="op">&gt;</span> (<span class="dv">1</span> <span class="op">-</span> theta))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Of course, while this approach is easy, it is not practible. For example, suppose that we have some list <span class="math inline">\(l\)</span> and we do not know what elements it is composed of. VSAs, by nature, are opaque as to their contents without additional help. For example, we could decode the elements of the vector using a resonator network <span class="citation" data-cites="fradyResonatorNetworks12020">(<a href="#ref-fradyResonatorNetworks12020" role="doc-biblioref">Frady et al. 2020</a>)</span>, but this would defeat the purpose as we would already retrieve a fully factorized list. Another option would be to memoize arguments to the list constructor upon each call; but this would make the memory grow in size with every single call to the list constructor. Therefore, we conclude that this approach is untenable.</p>
+<p>Of course, while this approach is easy, it is not practible.</p>
+<p>A desirable property of VSA networks is that we should be able to use and manipulate structured patterns while knowing as little information about the vector symbol as possible.</p>
+<div id="prp-minimal-encoding-debt" class="theorem proposition">
+<p><span class="theorem-title"><strong>Desideratum 1 (Encoding parsimony)</strong></span> A VSA encoding for some data structure should be able to achieve parity with the abstract definition while using the least amount of information as possible.</p>
+</div>
+<p>For example, suppose that we have some list <span class="math inline">\(l\)</span> and we do not know what elements it is composed of. VSAs, by nature, are opaque as to their contents without additional help. For example, we could decode the elements of the vector using a resonator network <span class="citation" data-cites="fradyResonatorNetworks12020">(<a href="#ref-fradyResonatorNetworks12020" role="doc-biblioref">Frady et al. 2020</a>)</span>, but this would defeat the purpose as we would already retrieve a fully factorized list. Another option would be to memoize arguments to the list constructor upon each call. However, once again, how given an arbitrary <span class="math inline">\(l\)</span> how would we recover the head? Therefore, we must conclude that the naïve encoding is not a worthwhile encoding scheme for lists that have arbitrary members.</p>
 </section>
 <section id="kanerva-encoding" class="level3">
-<h3 class="anchored" data-anchor-id="kanerva-encoding">Kanerva encoding</h3>
+<h3 class="anchored" data-anchor-id="kanerva-encoding">✅ Kanerva encoding</h3>
+<p>A similar lightweight intuition motivates what we call the <em>Kanerva</em> encoding <span class="citation" data-cites="kanervaComputing10000bitWords2014">(from <a href="#ref-kanervaComputing10000bitWords2014" role="doc-biblioref">Kanerva 2014</a>)</span>, and fairs better against <a href="#prp-minimal-encoding-debt" class="quarto-xref">Desideratum&nbsp;1</a>. We will include the previous <span class="math inline">\(\mathbf{nil}, \mathbf a, \mathbf b, \dots\)</span> in our codebook. Further, we will use three additional operations: the <em>left permutation</em> <span class="math inline">\(\Pi_\leftarrow\)</span>, the <em>right permutation</em> <span class="math inline">\(\Pi_\rightarrow\)</span>, and <em>cleanup memory</em> <span class="math inline">\(\mathcal{M}\)</span> where: <span class="math display">\[
+\begin{align*}
+\Pi_\leftarrow &amp;: X^{D_1 \times \dots \times D_n} \to X^{D_1 \times \dots \times D_n}, \\
+\Pi_\leftarrow &amp;: X^{D_1 \times \dots \times D_n} \to X^{D_1 \times \dots \times D_n}.
+\end{align*}
+\]</span> The left permutation and right permutation also have approximate inverses defined for them, denoted by <span class="math inline">\(\Pi_\leftarrow^{-1}\)</span> and <span class="math inline">\(\Pi_\rightarrow^{-1}\)</span> respectively. The cleanup memory <span class="math inline">\(\mathcal{M}\)</span> can be any autoassociative memory.</p>
+<p>With left and right permutations defined, list construction in the Kanerva encoding for vector symbol <span class="math inline">\(\mathbf{a}\)</span> and list <span class="math inline">\(l\)</span> is: <span class="math display">\[
+\operatorname{cons}_\text{Kanerva}(\mathbf a, l) = \Pi_\leftarrow(\mathbf a) \oplus \Pi_\rightarrow(l).
+\]</span> For deconstruction, we will ignore the <span class="math inline">\(\mathbf{nil}\)</span> case as it is identical to the naïve encoding. In the case that <span class="math inline">\(l = \Pi_\leftarrow (\mathbf a) \oplus \Pi_\rightarrow(l)\)</span>, then: <span class="math display">\[
+\begin{align*}
+\operatorname{car}_\text{Kanerva}(l) &amp;= \Pi^{-1}_\leftarrow(l),  \\
+\operatorname{cdr}_\text{Kanerva}(l) &amp;= \Pi^{-1}_\rightarrow(l).
+\end{align*}
+\]</span> The cleanup memory <span class="math inline">\(\mathcal{M}\)</span> can optionally be applied to the result of <span class="math inline">\(\operatorname{car}_\text{Kanerva}\)</span> or <span class="math inline">\(\operatorname{cdr}_\text{Kanerva}\)</span>. By the distributive properties permutation and the properties of bundling, it should be the case that <span class="math inline">\(\Pi^{-1}_\leftarrow(l)\)</span> is closer to <span class="math inline">\(\mathbf a\)</span> than anything else<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>.</p>
+<p>Our method can be operationalized by the following:</p>
+<div id="49c0ab1c" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> inv_perm(perm):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    inv <span class="op">=</span> np.arange(perm.size) <span class="co"># initialize inv</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    inv[perm] <span class="op">=</span> np.arange(perm.size) <span class="co"># create inv from perm</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> inv</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>rightperm <span class="op">=</span> np.random.permutation(D)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>leftperm <span class="op">=</span> np.random.permutation(D)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span>(<span class="kw">not</span> np.allclose(rightperm, leftperm))</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> kanerva_cons(hd, tl):</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    hd <span class="op">=</span> hd.data[leftperm]</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    tl <span class="op">=</span> tl.data[rightperm]</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> HRR.from_array(hd <span class="op">+</span> tl)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> kanerva_car(xs):</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> HRR.from_array(xs.data[inv_perm(leftperm)])</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> kanerva_cdr(xs):</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> HRR.from_array(xs.data[inv_perm(rightperm)])</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> kanerva_cons(a, nil)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>hd <span class="op">=</span> kanerva_car(l)</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> hd.sim(a) <span class="op">&gt;</span> (<span class="dv">1</span> <span class="op">-</span> theta)</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>tl <span class="op">=</span> kanerva_cdr(l)</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> tl.sim(nil) <span class="op">&gt;</span> (<span class="dv">1</span> <span class="op">-</span> theta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>How does our method fair against <a href="#prp-minimal-encoding-debt" class="quarto-xref">Desideratum&nbsp;1</a>? It is clear to see that if we have an arbitrary vector, as long as we have the basic symbols stored in our codebook, we can recursively destruct any list to recover the atomic constituent elements. The only downside is that we must rely on bundling, which might be lossy<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>.</p>
 </section>
 <section id="role-filler-encoding" class="level3">
-<h3 class="anchored" data-anchor-id="role-filler-encoding">Role-filler encoding</h3>
+<h3 class="anchored" data-anchor-id="role-filler-encoding">✅ Role-filler encoding</h3>
+<p>The final list encoding strategy that we will investigate is the <em>role-filler</em> pair (RFP) strategy. Role-filler pairs are motivated by a similar idea: given arbitrary lists, how do we recover the constituent components? Instead of defining new permutation operators, the RFP strategy defines new atomic vector symbols to stand as <em>roles</em>.</p>
+<p>Let us have the same codebook as our Kanerva strategy, so <span class="math inline">\(\textbf{nil}, \textbf a, \dots\)</span>, as well as two new symbols: <span class="math inline">\(\mathbf{left}\)</span> and <span class="math inline">\(\mathbf{right}\)</span>. Furthermore, let us store all atomic symbols in a cleanup memory <span class="math inline">\(\mathcal{M}\)</span>. Then, list construction is as follows: <span class="math display">\[
+    \operatorname{cons}_\text{RFP}(\mathbf a, l) = (\mathbf a \oplus \mathbf{left}) \otimes (l \oplus \mathbf{right}).
+\]</span> The <em>filler</em> values are identified by the varying elements in the structure. We can rely on both the properties of bundling and binding to recover elements in the list: <span class="math display">\[
+\begin{align*}
+    \operatorname{car}_\text{RFP}(l) &amp;= \textbf{right} \otimes^{-1} l, \\
+    \operatorname{cdr}_\text{RFP}(l) &amp;= \textbf{left} \otimes^{-1} l.
+\end{align*}
+\]</span> For our example above, applying if <span class="math inline">\(l = \operatorname{cons}_{\text{RFP}}(\mathbf a, \mathbf{nil})\)</span>, then: <span class="math display">\[
+\begin{align*}
+    \operatorname{car}_\text{RFP}(l) &amp;= \textbf{right} \otimes^{-1} l \approx \mathbf a \oplus
+    \textbf{left} + \kappa \\
+    \operatorname{cdr}_\text{RFP}(l) &amp;= \textbf{left} \otimes^{-1} l \approx \mathbf{nil} \oplus \textbf{right} + \kappa,
+\end{align*}
+\]</span> where <span class="math inline">\(\kappa\)</span> is noise.</p>
+<p>This can be operationalized as:</p>
+<div id="281edfcc" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>left <span class="op">=</span> HRR.new(D)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>right <span class="op">=</span> HRR.new(D)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cons_rfp(x, y):</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (x <span class="op">+</span> left) <span class="op">*</span> (y <span class="op">+</span> right)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> car_rfp(xs):</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> xs <span class="op">/</span> right</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cdr_rfp(xs):</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> xs <span class="op">/</span> left</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> cons_rfp(a, nil)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>hd <span class="op">=</span> car_rfp(l)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> hd.sim(a <span class="op">+</span> left) <span class="op">&gt;</span> <span class="fl">0.5</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>tl <span class="op">=</span> cdr_rfp(l)</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> tl.sim(nil <span class="op">+</span> right) <span class="op">&gt;</span> <span class="fl">0.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="comparing-rfp-and-kanerva-encodings" class="level3">
+<h3 class="anchored" data-anchor-id="comparing-rfp-and-kanerva-encodings">Comparing RFP and Kanerva encodings</h3>
+<p>How do we weigh the two encodings against one another? If our only concern was <a href="#prp-minimal-encoding-debt" class="quarto-xref">Desideratum&nbsp;1</a>, then one does not outweight the other as they both define two additional objects. However, there is something to note about the RFP encoding. Repeated bindings are purportedly lossy. In order to combat this, one can introduce a <em>pointer</em> mechanism <span class="citation" data-cites="tomkins-flanaganHeyPenttiWe2025 hanleyHeyPenttiWe2025">(see <a href="#ref-tomkins-flanaganHeyPenttiWe2025" role="doc-biblioref">Tomkins-Flanagan and Kelly 2025</a>; <a href="#ref-hanleyHeyPenttiWe2025" role="doc-biblioref">Hanley, Tomkins-Flanagan, and Kelly 2025</a>)</span>. But this, strictly speaking, means that there are more objects involved (a new pointer allocation and storage mechanism). Therefore, we ought to prefer the Kanerva encoding if chosen without any other considerations.</p>
 <div class="bibliography">
 
 </div>
@@ -742,6 +836,9 @@ Listing&nbsp;5
 
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-fodorConnectionismCognitiveArchitecture1988" class="csl-entry" role="listitem">
+Fodor, Jerry A., and Zenon W. Pylyshyn. 1988. <span>“Connectionism and Cognitive Architecture: <span>A</span> Critical Analysis.”</span> <em>Cognition</em> 28 (1–2): 3–71. <a href="https://doi.org/10.1016/0010-0277(88)90031-5">https://doi.org/10.1016/0010-0277(88)90031-5</a>.
+</div>
 <div id="ref-fradyResonatorNetworks12020" class="csl-entry" role="listitem">
 Frady, E. Paxon, Spencer J. Kent, Bruno A. Olshausen, and Friedrich T. Sommer. 2020. <span>“Resonator <span>Networks</span>, 1: <span>An Efficient Solution</span> for <span>Factoring High-Dimensional</span>, <span>Distributed Representations</span> of <span>Data Structures</span>.”</span> <em>Neural Computation</em> 32 (12): 2311–31. <a href="https://doi.org/10.1162/neco_a_01331">https://doi.org/10.1162/neco_a_01331</a>.
 </div>
@@ -760,6 +857,9 @@ Kanerva, Pentti. 2009. <span>“Hyperdimensional <span>Computing</span>: <span>A
 <div id="ref-kymnComputingResidueNumbers2024" class="csl-entry" role="listitem">
 Kymn, Christopher J., Denis Kleyko, E. Paxon Frady, Connor Bybee, Pentti Kanerva, Friedrich T. Sommer, and Bruno A. Olshausen. 2024. <span>“Computing <span>With Residue Numbers</span> in <span>High-Dimensional Representation</span>.”</span> <em>Neural Computation</em> 37 (1): 1–37. <a href="https://doi.org/10.1162/neco_a_01723">https://doi.org/10.1162/neco_a_01723</a>.
 </div>
+<div id="ref-mccullochPitts1942" class="csl-entry" role="listitem">
+McCulloch, W. S., and W. Pitts. 1943. <span>“A <span>Logical Calculus</span> of the <span>Ideas Immanent</span> in <span>Nervous Activity</span>.”</span> <em>Bulletin of Mathematical Biophysics</em>, no. 5: 115–33.
+</div>
 <div id="ref-plateHolographicReducedRepresentations1995" class="csl-entry" role="listitem">
 Plate, T. A. 1995. <span>“Holographic Reduced Representations.”</span> <em>IEEE Transactions on Neural Networks</em> 6 (3): 623–41. <a href="https://doi.org/10.1109/72.377968">https://doi.org/10.1109/72.377968</a>.
 </div>
@@ -768,6 +868,12 @@ Smolensky, Paul. 1990. <span>“Tensor Product Variable Binding and the Represen
 </div>
 <div id="ref-tomkins-flanaganHeyPenttiWe2025" class="csl-entry" role="listitem">
 Tomkins-Flanagan, Eilene, and Mary A. Kelly. 2025. <span>“Hey <span>Pentti</span>, <span>We Did It</span>!: <span>A Fully Vector-Symbolic Lisp</span>.”</span> October 18, 2025. <a href="https://doi.org/10.48550/arXiv.2510.17889">https://doi.org/10.48550/arXiv.2510.17889</a>.
+</div>
+<div id="ref-velez-ginorioCompilingLinearNeurons2026" class="csl-entry" role="listitem">
+Velez-Ginorio, Joey, Nada Amin, Konrad Kording, and Steve Zdancewic. 2026a. <span>“Compiling to <span>Linear Neurons</span>.”</span> <em>Proceedings of the ACM on Programming Languages</em> 10 (January): 1010–35. <a href="https://doi.org/10.1145/3776677">https://doi.org/10.1145/3776677</a>.
+</div>
+<div id="ref-velez-ginorioCompilingRecurrentNeurons2026" class="csl-entry" role="listitem">
+———. 2026b. <span>“Compiling to <span>Recurrent Neurons</span>.”</span> <em>Proceedings of the ACM on Programming Languages</em> 10 (June): 2452–73. <a href="https://doi.org/10.1145/3808345">https://doi.org/10.1145/3808345</a>.
 </div>
 <div id="ref-voelkerSimulatingPredictingDynamical2021" class="csl-entry" role="listitem">
 Voelker, Aaron R., Peter Blouw, Xuan Choo, Nicole Sandra-Yaffa Dumont, Terrence C. Stewart, and Chris Eliasmith. 2021. <span>“Simulating and <span>Predicting Dynamical Systems With Spatial Semantic Pointers</span>.”</span> <em>Neural Computation</em> 33 (8): 2033–67. <a href="https://doi.org/10.1162/neco_a_01410">https://doi.org/10.1162/neco_a_01410</a>.
@@ -779,6 +885,8 @@ Voelker, Aaron R., Peter Blouw, Xuan Choo, Nicole Sandra-Yaffa Dumont, Terrence 
 <li id="fn2"><p><em>Multiplicative</em> Binding is described for the Fourier-domain in <span class="citation" data-cites="kymnComputingResidueNumbers2024">Kymn et al. (<a href="#ref-kymnComputingResidueNumbers2024" role="doc-biblioref">2024</a>)</span>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>For the following, when we define a new pattern by bolded name, assume that we are sampling some vector from the given VSA’s pattern set, and then storing that pattern in the map <span class="math inline">\(\mathsf{C}\)</span>. Future references of the can be replaced by <span class="math inline">\(\mathsf C (\alpha)\)</span>, where <span class="math inline">\(\alpha\)</span> is a metavariable picking out names. This distinction is similar to the philosophical distinction between <em>use</em> and <em>mentioning</em>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p>And hence, <span class="math inline">\(l \sim \mathbf{nil} \approx 0\)</span>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Since <span class="math inline">\(\Pi_\rightarrow(x)\)</span> should be pseudo-orthogonal to every other possible symbol aside from itself, and principled usage of the memory should mean not storing permuted values. For more information <span class="citation" data-cites="kanervaComputing10000bitWords2014">(see <a href="#ref-kanervaComputing10000bitWords2014" role="doc-biblioref">Kanerva 2014</a>)</span>.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>More research needs to go into if this is the case.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main>
 <!-- /main column -->

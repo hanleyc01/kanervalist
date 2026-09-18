@@ -208,7 +208,7 @@ Listing&nbsp;2
 </figure>
 </div>
 <p>A less type-safe (and hence, easier) way of interacting with lists is through the <em>car</em> and <em>cdr</em> functions (following LISP), which correspond to the second branch in <a href="#lst-list-recursion" class="quarto-xref">Listing&nbsp;2</a>.</p>
-<div id="9cfb5fc8" class="cell" data-execution_count="3">
+<div id="46f40b09" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> car[T](<span class="bu">list</span>: List[T]) <span class="op">-&gt;</span> T:</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">match</span> <span class="bu">list</span>:</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> Nil():</span>
@@ -327,7 +327,7 @@ Listing&nbsp;3
 <li>The similarity function is <em>absolute cosine similarity</em>: <span class="math display">\[
 x_1 \sim x_2 = \operatorname{abs}\left(\frac{x_1^\top x_2}{|x_1|_2 |x_2|_2}\right);
 \]</span></li>
-<li>Binding is <em>circular convlution</em>: <span class="math display">\[
+<li>Binding is <em>circular convolution</em>: <span class="math display">\[
 x_1 \otimes x_2 = \mathcal{F}^{-1}\left[ \mathcal{F}(x_1) \odot \mathcal{F}(x_2)  \right],
 \]</span> and unbinding <em>circular correlation</em>: <span class="math display">\[
 x_1 \otimes^{-1} x_2 = \mathcal{F}^{-1} \left[ \overline{\mathcal{F}(x_1)} \odot \mathcal{F}(y) \right];
@@ -695,7 +695,7 @@ Listing&nbsp;5
 <p>Atomic objects like <span class="math inline">\(\operatorname{Nil}_A\)</span> are represented in VSAs by randomly sampled vectors from the pattern set of the VSA. For ease of use, we store them in maps called <em>codebooks</em>, <span class="math inline">\(\mathsf{C}\)</span>, and index the vectors by names<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. Let <span class="math inline">\(\mathbf{nil}\)</span> be sampled in the pattern set of some VSA, <span class="math inline">\(\mathcal{V}\)</span>.</p>
 <p>There are many potential ways for getting equivalent behavior to the constructor <span class="math inline">\(\operatorname{List}(x, l)\)</span>. In the following, we will investigate three options: a <em>naïve</em> encoding that combines elements by binding; the <em>Kanerva</em> encoding, which combines elements by permutations; and the <em>role-filler</em> encoding, which tags elements by a <em>role</em> vector symbol.</p>
 <section id="naïve-encoding" class="level3">
-<h3 class="anchored" data-anchor-id="naïve-encoding">Naïve encoding</h3>
+<h3 class="anchored" data-anchor-id="naïve-encoding">❌ Naïve encoding</h3>
 <p>The <em>naïve</em> encoding of lists is a straightforward, though memory intensive, method for mirroring the behavior of lists. Recall, we have already defined a vector symbol <span class="math inline">\(\mathbf{nil}\)</span>. Let <span class="math inline">\(\mathbf a, \mathbf b, \dots\)</span> be more arbitrary vector symbols from the pattern set of our VSA. Then to perform the naïve encoding. Then, we can encode a list as a plain binding: <span class="math display">\[
 \begin{align*}
 \mathbf{a} \otimes l
@@ -707,7 +707,7 @@ Listing&nbsp;5
 \end{align*}
 \]</span></p>
 <p>The naïve approach can be operationalized using HRRs as follows:</p>
-<div id="93a660b4" class="cell" data-execution_count="8">
+<div id="d8c14de2" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">41</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> <span class="dv">5_000</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> <span class="fl">0.3</span> <span class="co"># High theta because we don't use cleanup memories</span></span>
@@ -726,13 +726,49 @@ Listing&nbsp;5
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>tail <span class="op">=</span> l <span class="op">/</span> a</span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span>(tail.sim(nil) <span class="op">&gt;</span> (<span class="dv">1</span> <span class="op">-</span> theta))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Of course, while this approach is easy, it is not practible. For example, suppose that we have some list <span class="math inline">\(l\)</span> and we do not know what elements it is composed of. VSAs, by nature, are opaque as to their contents without additional help. For example, we could decode the elements of the vector using a resonator network <span class="citation" data-cites="fradyResonatorNetworks12020">(<a href="#ref-fradyResonatorNetworks12020" role="doc-biblioref">Frady et al. 2020</a>)</span>, but this would defeat the purpose as we would already retrieve a fully factorized list. Another option would be to memoize arguments to the list constructor upon each call; but this would make the memory grow in size with every single call to the list constructor. Therefore, we conclude that this approach is untenable.</p>
+<p>Of course, while this approach is easy, it is not practible.</p>
+<p>A desirable property of VSA networks is that we should be able to use and manipulate structured patterns while knowing as little information about the vector symbol as possible.</p>
+<div id="prp-minimal-encoding-debt" class="theorem proposition">
+<p><span class="theorem-title"><strong>Desideratum 1 (Encoding parsimony)</strong></span> A VSA encoding for some data structure should be able to achieve parity with the abstract definition while using the least amount of information as possible.</p>
+</div>
+<p>For example, suppose that we have some list <span class="math inline">\(l\)</span> and we do not know what elements it is composed of. VSAs, by nature, are opaque as to their contents without additional help. For example, we could decode the elements of the vector using a resonator network <span class="citation" data-cites="fradyResonatorNetworks12020">(<a href="#ref-fradyResonatorNetworks12020" role="doc-biblioref">Frady et al. 2020</a>)</span>, but this would defeat the purpose as we would already retrieve a fully factorized list. Another option would be to memoize arguments to the list constructor upon each call. However, once again, how given an arbitrary <span class="math inline">\(l\)</span> how would we recover the head? Therefore, we must conclude that the naïve encoding is not a worthwhile encoding scheme for lists that have arbitrary members.</p>
 </section>
 <section id="kanerva-encoding" class="level3">
-<h3 class="anchored" data-anchor-id="kanerva-encoding">Kanerva encoding</h3>
+<h3 class="anchored" data-anchor-id="kanerva-encoding">✅ Kanerva encoding</h3>
+<p>A similar lightweight intuition motivates what we call the <em>Kanerva</em> encoding <span class="citation" data-cites="kanervaComputing10000bitWords2014">(from <a href="#ref-kanervaComputing10000bitWords2014" role="doc-biblioref">Kanerva 2014</a>)</span>, and fairs better against <a href="#prp-minimal-encoding-debt" class="quarto-xref">Desideratum&nbsp;1</a>. We will include the previous <span class="math inline">\(\mathbf{nil}, \mathbf a, \mathbf b, \dots\)</span> in our codebook. Further, we will use two additional operations: the <em>left permutation</em> <span class="math inline">\(\Pi_\leftarrow\)</span> and the <em>right permutation</em> <span class="math inline">\(\Pi_\rightarrow\)</span>, where: <span class="math display">\[
+\begin{align*}
+\Pi_\leftarrow &amp;: X^{D_1 \times \dots \times D_n} \to X^{D_1 \times \dots \times D_n}, \\
+\Pi_\leftarrow &amp;: X^{D_1 \times \dots \times D_n} \to X^{D_1 \times \dots \times D_n}.
+\end{align*}
+\]</span> The left permutation and right permutation also have approximate inverses defined for them, denoted by <span class="math inline">\(\Pi_\leftarrow^{-1}\)</span> and <span class="math inline">\(\Pi_\rightarrow^{-1}\)</span> respectively.</p>
+<!-- ```{python}
+# Cleanup memory
+Memory = np.zeros((D, 1))
+
+def Memory_recall(x):
+    global Memory
+    activations = [HRR.similarity(mem, x) for x in Memory]
+    return HRR.from_array(Memory[np.argmax(activations), :])
+
+
+def Memory_store(x):
+    global Memory
+    x = np.expand_dims(x, axis=-1)
+    Memory = np.concatenate((Memory, x), axis=-1)
+
+perm = np.random.permutation(D)
+
+def kanerva_cons(hd, tl):
+    global Memory
+    tl_ = tl.data[perm]
+    Memory_store(tl_)
+    return hd + tl_
+
+l = kanerva_cons(a, nil)
+``` -->
 </section>
 <section id="role-filler-encoding" class="level3">
-<h3 class="anchored" data-anchor-id="role-filler-encoding">Role-filler encoding</h3>
+<h3 class="anchored" data-anchor-id="role-filler-encoding">✅ Role-filler encoding</h3>
 <div class="bibliography">
 
 </div>

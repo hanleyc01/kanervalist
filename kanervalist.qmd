@@ -3,6 +3,9 @@ title: "VSA Lists"
 author: Connor Hanley
 format: html
 bibliography: references.bib
+crossref:
+  prp-title: "Desideratum"
+  prp-prefix: "Desideratum"
 ---
 
 ## Introduction
@@ -225,7 +228,7 @@ to implement the VSA operations in @def-vsa.
 $$
     x_1 \sim x_2 = \operatorname{abs}\left(\frac{x_1^\top x_2}{|x_1|_2 |x_2|_2}\right);
 $$
-3. Binding is *circular convlution*:
+3. Binding is *circular convolution*:
 $$
     x_1 \otimes x_2 = \mathcal{F}^{-1}\left[ \mathcal{F}(x_1) \odot \mathcal{F}(x_2)  \right],
 $$
@@ -762,7 +765,7 @@ options: a *naïve* encoding that combines elements by binding; the *Kanerva*
 encoding, which combines elements by permutations; and the *role-filler* encoding,
 which tags elements by a *role* vector symbol.
 
-### Naïve encoding
+### ❌ Naïve encoding
 
 The *naïve* encoding of lists is a straightforward, though memory intensive,
 method for mirroring the behavior of lists. Recall, we have already defined
@@ -809,19 +812,75 @@ assert(head.sim(a) > (1 - theta))
 tail = l / a
 assert(tail.sim(nil) > (1 - theta))
 ```
-Of course, while this approach is easy, it is not practible. For example, 
+Of course, while this approach is easy, it is not practible. 
+
+A desirable property of VSA networks is that we should be able to use and 
+manipulate structured patterns while knowing as little information about 
+the vector symbol as possible.
+
+::: {#prp-minimal-encoding-debt}
+## Encoding parsimony
+A VSA encoding for some data structure should be able to
+achieve parity with the abstract definition while using the least amount
+of information as possible.
+:::
+
+For example, 
 suppose that we have some list $l$ and we do not know what elements it is composed
 of. VSAs, by nature, are opaque as to their contents without additional help.
 For example, we could decode the elements of the vector using a resonator
 network [@fradyResonatorNetworks12020], but this would defeat the purpose as
 we would already retrieve a fully factorized list. Another option
-would be to memoize arguments to the list constructor upon each call; but
-this would make the memory grow in size with every single call to the list 
-constructor. Therefore, we conclude that this approach is untenable. 
+would be to memoize arguments to the list constructor upon each call. However,
+once again, how given an arbitrary $l$ how would we recover the head?
+Therefore, we must conclude that the naïve encoding is not a worthwhile
+encoding scheme for lists that have arbitrary members.
 
-### Kanerva encoding
+### ✅ Kanerva encoding
 
-### Role-filler encoding
+A similar lightweight intuition motivates what we call the *Kanerva* encoding
+[from @kanervaComputing10000bitWords2014], and fairs better against @prp-minimal-encoding-debt.
+We will include the previous $\mathbf{nil}, \mathbf a, \mathbf b, \dots$ in
+our codebook. Further, we will use two additional operations: the *left permutation*
+$\Pi_\leftarrow$ and the *right permutation* $\Pi_\rightarrow$, where:
+$$
+\begin{align*}
+\Pi_\leftarrow &: X^{D_1 \times \dots \times D_n} \to X^{D_1 \times \dots \times D_n}, \\
+\Pi_\leftarrow &: X^{D_1 \times \dots \times D_n} \to X^{D_1 \times \dots \times D_n}.
+\end{align*}
+$$
+The left permutation and right permutation also have approximate inverses defined
+for them, denoted by $\Pi_\leftarrow^{-1}$ and $\Pi_\rightarrow^{-1}$ respectively.
+
+
+
+<!-- ```{python}
+# Cleanup memory
+Memory = np.zeros((D, 1))
+
+def Memory_recall(x):
+    global Memory
+    activations = [HRR.similarity(mem, x) for x in Memory]
+    return HRR.from_array(Memory[np.argmax(activations), :])
+
+
+def Memory_store(x):
+    global Memory
+    x = np.expand_dims(x, axis=-1)
+    Memory = np.concatenate((Memory, x), axis=-1)
+
+perm = np.random.permutation(D)
+
+def kanerva_cons(hd, tl):
+    global Memory
+    tl_ = tl.data[perm]
+    Memory_store(tl_)
+    return hd + tl_
+
+l = kanerva_cons(a, nil)
+``` -->
+
+### ✅ Role-filler encoding
 
 ::: {.bibliography}
 :::

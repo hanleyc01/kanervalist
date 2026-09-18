@@ -1,0 +1,827 @@
+---
+title: "VSA Lists"
+author: Connor Hanley
+format: html
+bibliography: references.bib
+---
+
+## Introduction
+
+Vector Symbolic Architectures, or Hyperdimensional Computing (VSA/HDC)
+is a model of computation using high-dimensional vectors that supports
+compositional, systematic, and generative patterns 
+[@smolenskyTensorProductVariable1990; @plateHolographicReducedRepresentations1995; 
+@kanervaHyperdimensionalComputingIntroduction2009; @gaylerVectorSymbolicArchitectures2004].
+A common data structure that VSA/HDC is required to represent are *lists*.
+In this document, we will explore two distinct methods for encoding lists
+in VSA. The first, what we call *Kanerva* lists after @kanervaComputing10000bitWords2014;
+the second, we call *role-filler* lists, which are used in @tomkins-flanaganHeyPenttiWe2025
+and @hanleyHeyPenttiWe2025.
+
+## Lists
+
+::: {#def-lists}
+## Lists
+
+A *list of* objects in set $A$ (or, a *list of $A$*), denoted by 
+$\text{List}(A)$ is a set of objects
+recursively defined by the following conditions:
+
+1. $\emptyset_A \in \text{List}(A)$; and,
+2. If $x \in A$ and $l \in \text{List}(A)$, then $\text{Cons}(x, l) \in \text{List}(A)$.
+:::
+
+In `python`, this would be operationalized as:
+```{python}
+#| label: lst-list-datatype
+#| echo: true
+
+from dataclasses import dataclass
+
+
+@dataclass
+class Nil[T]:
+    ...
+
+@dataclass
+class Cons[T]:
+    hd: T
+    tl: "List[T]"
+
+
+type List[T] = Nil[T] | Cons[T]
+```
+
+Common methods for interacting with lists are *constructing* lists out of 
+elements of $A$, which are provided by conditions (1-2) of @def-lists. Likewise,
+*destructing* the list, or accessing elements in the list, is provided by
+recursing over the structure of the list: 
+
+```{python}
+#| label: lst-list-recursion
+#| lst-cap: "Recursion over lists"
+#| eval: false
+#| echo: true
+
+def foo[T](list: List[T]):
+    match list:
+        case Nil():
+            ...
+        case Cons(head, tail):
+            ...
+```
+
+A less type-safe (and hence, easier) way of interacting with lists is through
+the *car* and *cdr* functions (following LISP), which correspond to the
+second branch in @lst-list-recursion.
+
+```{python}
+def car[T](list: List[T]) -> T:
+    match list:
+        case Nil():
+            raise ValueError("Unable to perform `car` on `nil`.")
+        case Cons(head, _):
+            return head
+
+
+def cdr[T](list: List[T]) -> List[T]:
+    match list:
+        case Nil():
+            raise ValueError("Unable to perform `cdr` on `nil`")
+        case Cons(_, tail):
+            return tail
+```
+
+Once we have a definition of VSA/HDC, these basic operations will inform us
+how we are supposed to characterize the abstract behavior of list representations
+in VSAs. In other words, in order for us to represent the behavior of lists
+in VSA/HDC, we must provide (at least) the recursive definition in @lst-list-datatype.
+
+## VSA/HDC
+
+VSA/HDC is a implementation of computation in high-dimensional vectors
+[or tensors, see @smolenskyTensorProductVariable1990] that provide neural
+networks with the ability to construct and manipulate *distributed* patterns
+that are compositional, systematic, and generative. Will provide a general
+definition of VSAs, then focus in on the two VSAs that we will use to explore
+list encodings: Holographic Reduced Representations [HRRs, from @plateHolographicReducedRepresentations1995]
+and Time-domain Residue Hyperdimensional Computing [TRHC, counterpart to RHC from 
+@kymnComputingResidueNumbers2024; cf. @voelkerSimulatingPredictingDynamical2021].
+
+::: {#def-vsa}
+A *Vector Symbolic Architecture* $\mathcal{V}$ is a structure $\langle X^{D_1 \times \dots \times D_n}, \sim,  \otimes, \oplus \rangle$,
+where:
+
+1. A *pattern set* $X^{D_1 \times \dots \times D_n}$,
+2. There is a *similarity* function
+$$
+x_1 \sim x_2 : X^{D_1 \times \dots \times D_n} \times X^{D_1 \times \dots \times D_n} \to [0, 1];
+$$
+2. There is a *binding* function,
+$$
+x_1 \otimes x_2 : X^{D_1 \times \dots \times D_n} \times X^{D_1 \times \dots \times D_n} \to X^{D_1 \times \dots \times D_n},
+$$
+such that $x_1 \otimes x_2$ is neither similar to $x_1$ nor $x_2$, and the binding
+operation admits an approximate inverse,
+$$
+\begin{align*}
+    [x_1 \otimes^{-1} (x_1 \otimes x_2) \sim x_2] &\approx 1, \\
+    [x_2 \otimes^{-1} (x_1 \otimes x_2) \sim x_1] &\approx 1;
+\end{align*}
+$$
+3. And, there is a *bundling* or *superposition* operation,
+$$
+x_1 \oplus x_2 : X^{D_1 \times \dots \times D_n} \times X^{D_1 \times \dots \times D_n} \to X^{D_1 \times \dots \times D_n},
+$$
+such that $x_1 \oplus x_2$ is similar to both $x_1$ and $x_2$.
+:::
+
+Some VSAs include an extra *permutation* operation that functions like
+a one-place binding, such that
+$$
+\Pi(x) : X^{D_1 \times \dots \times D_n} \to X^{D_1 \times \dots \times D_n},
+$$
+and,
+$$
+\Pi(x) \sim x \approx 0, \quad \Pi^{-1} \Pi (x) \sim x \approx 1.
+$$
+We will not include it in our definition, but we will use the permutation 
+operation in the following.
+
+@def-vsa can be operationalized by the following abstract class definition:
+```{python}
+#| label: lst-vsa-datatype
+#| echo: true
+from abc import ABCMeta, abstractmethod
+from typing import ClassVar, Self
+
+import numpy as np
+import numpy.typing as npt
+
+class VSA[T: np.generic](metaclass=ABCMeta):
+    """Abstract base class of all VSA implementations.
+
+    All VSA's must implement the following methods:
+    """
+
+    data: npt.NDArray[T]
+    dtype: ClassVar[type[np.generic]]
+
+    @staticmethod
+    @abstractmethod
+    def bind(x: npt.NDArray[T], y: npt.NDArray[T]) -> npt.NDArray[T]:
+        """Vector symbolic binding."""
+        ...
+
+    @staticmethod
+    @abstractmethod
+    def bundle(x: npt.NDArray[T], y: npt.NDArray[T]) -> npt.NDArray[T]:
+        """Vector symbolic bundling."""
+        ...
+
+    @staticmethod
+    @abstractmethod
+    def unbind(x: npt.NDArray[T], y: npt.NDArray[T]) -> npt.NDArray[T]:
+        """Vector symbolic unbinding."""
+        ...
+
+    @staticmethod
+    @abstractmethod
+    def similarity(x: npt.NDArray[T], y: npt.NDArray[T]) -> float:
+        """Vector symbolic similarity."""
+        ...
+
+    @classmethod
+    @abstractmethod
+    def new(cls, dim: int) -> Self:
+        """Initialize a new vector."""
+        ...
+
+    @classmethod
+    @abstractmethod
+    def from_array(cls, array: npt.NDArray[T]) -> Self:
+        """Create a VSA from an array."""
+        ...
+
+    @abstractmethod
+    def __hash__(self) -> int: ...
+
+```
+
+### Holographic Reduced Representations
+
+Holographic Reduced Representations [HRRs, @plateHolographicReducedRepresentations1995]
+are a VSA defined over $D$-dimensional real vectors, which uses cosine similarity,
+element-wise multiplication in the Fourier domain, and element-wise summation
+to implement the VSA operations in @def-vsa. 
+
+::: {#def-hrr}
+## HRRs
+
+*Holographic Reduced Representations* (HRRs) are a VSA $\mathcal{H}$, where
+
+1. The set of high-dimensional patterns is $\mathbb{R}^D$;
+2. The similarity function is *absolute cosine similarity*:
+$$
+    x_1 \sim x_2 = \operatorname{abs}\left(\frac{x_1^\top x_2}{|x_1|_2 |x_2|_2}\right);
+$$
+3. Binding is *circular convlution*:
+$$
+    x_1 \otimes x_2 = \mathcal{F}^{-1}\left[ \mathcal{F}(x_1) \odot \mathcal{F}(x_2)  \right],
+$$
+and unbinding *circular correlation*:
+$$
+x_1 \otimes^{-1} x_2 = \mathcal{F}^{-1} \left[ \overline{\mathcal{F}(x_1)} \odot \mathcal{F}(y) \right];
+$$
+4. And, bundling is the element-wise sum of $x_1$ and $x_2$:
+$$
+    x_1 \oplus x_2 = x_1 + x_2.
+$$
+:::
+
+Demonstrating that HRRs are VSAs aside from stipulation is trivial, so we will
+leave it out of our consideration here.
+@def-hrr can be operationalized as:
+```{python}
+#| label: lst-hrr
+#| echo: true
+
+import math
+from typing import Self, cast, override
+
+import numpy as np
+from numpy.fft import fft, ifft
+
+type ArrayF64 = npt.NDArray[np.float64]
+
+
+class HRR(VSA[np.float64]):
+    """Holographic reduced representation vectors.
+
+    The vectors of HRR are sampled from a normal distribution. Implements
+    binding through circular convolution.
+    """
+
+    data: ArrayF64
+    dtype = np.float64
+
+    def __init__(self, data: ArrayF64) -> None:
+        self.data = data
+
+    @classmethod
+    def normal(cls, size: int, sd: float | None = None) -> Self:
+        """Create a new HRR by sampling from the normal distribution.
+
+        Args:
+            size (int): The dimensionality of the new HRR vector-symbol.
+            sd (float | None): Defaults to `None`, the standard deviation
+            of the normal distribution.
+
+        Returns:
+            A new HRR vector-symbol.
+        """
+        if sd is None:
+            sd = 1.0 / math.sqrt(size)
+        data = np.random.normal(scale=sd, size=size)
+        data /= np.linalg.norm(data)
+        return cls(data)
+
+    @override
+    @classmethod
+    def from_array(cls, array: ArrayF64) -> Self:
+        """Create a new HRR from an array.
+
+        Args:
+            x (npt.NDArray[np.float64]): A raw float array.
+
+        Returns:
+            A new HRR vector-symbol, drawn from `x`.
+        """
+        return cls(array)
+
+    @override
+    @classmethod
+    def new(cls, dim: int) -> Self:
+        """Create a new vector-symbol.
+
+        Args:
+            dim (int): The dimensionality of the new vector-symbol.
+
+        Returns:
+            A new HRR vector-symbol.
+        """
+        return cls.normal(dim)
+
+    @override
+    @staticmethod
+    def bind(x: ArrayF64, y: ArrayF64) -> ArrayF64:
+        """The product operation in the HRR VSA.
+
+        Args:
+            x (npt.NDArray[np.float64]): The left-hand side of the operation.
+            y (npt.NDArray[np.float64]): The right-hand side of the operation.
+
+        Returns:
+            The circular convolution of `x` and `y`. Here, it is implemented
+            through the fast Fourier transform.
+        """
+        return cast(ArrayF64, ifft(fft(x) * fft(y)).real)
+
+    @override
+    @staticmethod
+    def bundle(x: ArrayF64, y: ArrayF64) -> ArrayF64:
+        """The HRR VSA sum operation.
+
+        Args:
+            x (npt.NDArray[np.float64]): The left-hand side of the operation.
+            y (npt.NDArray[np.float64]): The right-hand side of the operation.
+
+        Returns:
+            The element-wise sum of the left-hand side and the right-hand side.
+        """
+        return x + y
+
+    @staticmethod
+    def inv(x: ArrayF64) -> ArrayF64:
+        """The approximate inverse for HRR.
+
+        Args:
+            x (npt.NDArray[np.float64]): The left-hand side of the operation.
+
+        Returns:
+            The approximate inverse of `x`.
+        """
+
+        return x[np.r_[0, x.size - 1 : 0 : -1]]
+
+    @override
+    @staticmethod
+    def unbind(x: ArrayF64, y: ArrayF64) -> ArrayF64:
+        """The unbinding operatin in the HRR VSA.
+
+        Args:
+            x (npt.NDArray[np.float64]): The left-hand side of the operation.
+            y (npt.NDArray[np.float64]): The right-hand side of the operation.
+
+        Returns:
+            The binding of the left-hand side with the approximate inverse
+            of the right hand side.
+        """
+        return HRR.bind(x, HRR.inv(y))
+
+    @override
+    @staticmethod
+    def similarity(x: ArrayF64, y: ArrayF64) -> float:
+        """Approximated kernel for HRR. Measures the 'distance' between
+        the left-hand and right-hand side.
+
+        Args:
+            x (npt.NDArray[np.float64]): The left-hand side of the operation.
+            y (npt.NDArray[np.float64]): The right-hand side of the operation.
+
+        Returns:
+            The 'distance' between the left-hand side and the right-hand
+            side, a value between -1 and 1.
+        """
+        mag = float(np.linalg.norm(x) * np.linalg.norm(y))
+        if mag == 0.0:
+            return 0.0
+        else:
+            return float(np.dot(x, y) / mag)
+```
+
+```{python}
+#| include: false
+from abc import update_abstractmethods
+
+
+def HRRadd__(self, rhs: HRR | float) -> Self:
+    """See `HRR.bundle`."""
+    cls = type(self)
+    if isinstance(rhs, HRR):
+        return cls(cls.bundle(self.data, rhs.data))
+    else:
+        return cls(self.data + rhs)
+
+def HRRradd__(self, rhs: HRR | float) -> Self:
+    """See `HRR.bundle`."""
+    cls = type(self)
+    if isinstance(rhs, HRR):
+        return cls(cls.bundle(self.data, rhs.data))
+    else:
+        return cls(self.data + rhs)
+
+def HRRsub__(self, rhs: HRR | float) -> Self:
+    """Element-wise subtraction."""
+    cls = type(self)
+    if isinstance(rhs, HRR):
+        return cls(self.data - rhs.data)
+    else:
+        return cls(self.data - rhs)
+
+def HRRmul__(self, rhs: HRR | float) -> Self:
+    """Scalar multiplication or `HRR.bind`."""
+    cls = type(self)
+    if isinstance(rhs, HRR):
+        return cls(cls.bind(self.data, rhs.data))
+    else:
+        return cls(self.data * rhs)
+
+def HRRrmul__(self, rhs: HRR | float) -> Self:
+    """Scalar multiplication or `HRR.bind`."""
+    cls = type(self)
+    if isinstance(rhs, HRR):
+        return cls(cls.bind(self.data, rhs.data))
+    else:
+        return cls(self.data * rhs)
+
+def HRRtruediv__(self, rhs: HRR | float) -> Self:
+    """Scalar division or `HRR.unbind`."""
+    cls = type(self)
+    if isinstance(rhs, HRR):
+        return cls(cls.unbind(self.data, rhs.data))
+    elif isinstance(rhs, int):
+        return cls(self.data / rhs)
+    else:
+        return cls((self.data / rhs).astype(np.float64))
+
+def HRRinvert__(self) -> Self:
+    """See `HRR.inv`."""
+    cls = type(self)
+    return cls(cls.inv(self.data))
+
+def HRRneg__(self) -> Self:
+    """Element-wise negation."""
+    return type(self)(-self.data)
+
+def magnitude(self) -> float:
+    """The magnitude of the raw vector."""
+    return math.sqrt(self.data @ self.data) / self.data.size
+
+def HRRmatmul__(self, other: HRR | ArrayF64) -> float | ArrayF64:
+    """Matrix multiplication."""
+    if isinstance(other, HRR):
+        return self.data @ other.data
+    else:
+        if len(other.shape) == 2:
+            return (self.data @ other).astype(np.float64)
+        else:
+            return self.data @ other
+
+def sim(self, other: HRR | ArrayF64) -> float:
+    """See `HRR.similarity`."""
+    if isinstance(other, HRR):
+        return HRR.similarity(self.data, other.data)
+    else:
+        return HRR.similarity(self.data, other)
+
+@override
+def HRRstr__(self) -> str:
+    return f"{type(self).__name__}({self.data})"
+
+@override
+def HRRhash__(self) -> int:
+    return hash(self.data.tobytes())
+
+
+for _method in (
+    HRRadd__,
+    HRRradd__,
+    HRRsub__,
+    HRRmul__,
+    HRRrmul__,
+    HRRtruediv__,
+    HRRinvert__,
+    HRRneg__,
+    magnitude,
+    HRRmatmul__,
+    sim,
+    HRRstr__,
+    HRRhash__,
+):
+    name = str(_method.__name__).replace("HRR", "__")
+    print(name)
+    setattr(HRR, name, _method)
+
+# `VSA.__hash__` is abstract, so recompute HRR's abstract methods now that
+# it has been implemented.
+_ = update_abstractmethods(HRR)
+```
+
+### Time-domain Residue Hyperdimensional Computing
+
+Time-domain Residue Hyperdimensional Computing (TRHC) is a modification
+of the Residue Hyperdimensional Computing VSA [RHC, @kymnComputingResidueNumbers2024]
+which uses a residue number encoding to represent natural numbers and simple
+arithmetic in VSAs. Strictly speaking, according to @def-vsa TRHC (and RHC) is
+not one single VSA but two distinct VSAs, since TRHC defines two binding operations
+that perform addition and multiplication over their encoded residue number.
+For our purposes, we will focus only on the variant with additive binding
+since the multiplicative binding operation is tedious to deal with.
+
+Unlike HRRs, TRHC requires some preliminary definitions. Namely, since 
+TRHC was developed to represent numbers using a residue encoding, we have
+to define first define what that means.
+
+TRHC vectors must have the following properties:
+
+1. TRHC vectors must have a unit norm, such that $\|x\| = 1$; and,
+2. TRHC vectors must be *unitary under binding*, meaning that binding (circular
+convolution) and unbinding (circular correlation) must give exact.
+
+Suppose we have a set of odd moduli $m_1, m_2, \dots, m_k$.
+For each modulus, let $b_i$ denote the *base vector* of modulus $m_i$ of
+dimension $D$. A base vector is constructed by[^1]:
+
+1. If $D$ is even, then:
+    + $b_i[0] = 0$,
+    + $b_i[1, \dots, D / 2 - 1]$ are sampled from $\{0, \dots, m_i - 1\}$
+    + $b_i[D / 2] = 0$, which is the *Nyquist* bin; and,
+    + $b_i[D/2 + 1, \dots, D]$ is the mirror and flipped sign of $b_i[1, \dots, D/2-1]$.
+2. If $D$ is odd, then:
+    + $b_i[0] = 0$,
+    + $b_i[1, \dots, \lfloor D / 2\rfloor]$ are sampled from $\{0, \dots, m_i - 1\}$, and
+    + $b_i[\lfloor D / 2\rfloor + 1, \dots, D]$ are mirror and flipped sign of $b_i[1, \dots, D/2-1]$.
+
+To get the residue effect, we multiply by $2 \pi / m_i$ and exponentiate, and then
+apply the inverse Fourier transform to return to the time domain:
+$$
+b_i = \exp\left( \frac{2 \pi b_i}{m_i} \right)
+$$
+For all base vectors, let $b_i^n$ denote:
+$$
+b_i^n = \mathcal{F}^{-1} \left[ \mathcal{F}(b_i)^n \right].
+$$
+Then, the encoding of a natural number $n$ in THRC with moduli $m_1, m_2, \dots, m_k$ is:
+$$
+v(n) = b_1^n \otimes b_2^n \otimes \dots \otimes b_k^n,
+$$
+where $\cdot \otimes \cdot$ denotes circular convolution. This gives us the 
+residue result, such that each vector stores the residues $n \bmod m_1, \dots, n \bmod m_k$,
+and by the Chinese Remaind Theorem, $n$ is uniquely determined modulo
+$\prod_i m_i$. 
+
+[^1]: We use $b_i[\dots]$ to denote indexing into the vector, following `python` style, so as to not confuse the index into the vector with the index matching the modulus.
+
+::: {#def-trhc}
+## Additive Time-domain Residue Hyperdimensional Computing
+
+Additive *Time-domain Residue Hyperdimensional Computing*[^2] (aTRHC) is a VSA with:
+
+1. A set of $D$-dimensional real vectors, $\mathbb{R}^D$;
+2. Binding via circular convolution, unbinding via circular correlation; and,
+3. Bundling via element-wise addition.
+:::
+
+aTRHC is said to be *additive* because circular correlation obeys the following
+property:
+$$
+v(n) \otimes v(m) = v\left(n + m \bmod \prod_i m_i\right).
+$$
+
+[^2]: *Multiplicative* Binding is described for the Fourier-domain in @kymnComputingResidueNumbers2024.
+
+@def-trhc can be operationalized as:
+```{python}
+#| label: lst-trhc
+#| echo: true
+
+class TRHC(HRR):
+    """Time-domain Residue Hyperdimensional Computing.
+
+    So-called, because it deals with RHC in the time-domain, as opposed to the frequency
+    domain.
+    """
+
+    data: ArrayF64
+    moduli: ClassVar[list[int]] = [3, 5, 7, 11]
+    basis: ClassVar[list[ArrayF64]] = []
+
+    @staticmethod
+    def generate_base_vector(
+        rng: np.random.Generator, modulus: int, dim: int
+    ) -> ArrayF64:
+        """Generates an RHC base vector in the time domain.
+
+        Args:
+        -   rng (np.random.Generator): The random number generator.
+        -   modulus (int): The modulus of the base vector.
+        -   dim (int): The dimension of the base vector.
+
+        Returns:
+            An TRHC base vector in the time domain.
+        """
+
+        k_choices = np.zeros(dim, dtype=int)
+        k_choices[0] = 0
+
+        half_len = dim // 2
+
+        if dim % 2 == 0:
+            k_choices[1:half_len] = rng.choice(modulus, half_len - 1)
+            # The Nyquist bin is its own conjugate, so its phase must be 0 or pi.
+            k_choices[half_len] = (
+                0 if rng.random() > 0.5 else (modulus // 2 if modulus % 2 == 0 else 0)
+            )
+            k_choices[half_len + 1 :] = -k_choices[half_len - 1 : 0 : -1]
+        else:
+            # Odd dim has half_len free bins (1..half_len), with no Nyquist bin.
+            k_choices[1 : half_len + 1] = rng.choice(modulus, half_len)
+            k_choices[half_len + 1 :] = -k_choices[half_len:0:-1]
+
+        phases = 2 * np.pi * k_choices / modulus
+        z_freq = np.exp(1j * phases)
+        z_time = np.fft.ifft(z_freq)
+        return z_time.real
+
+    @classmethod
+    def generate_basis(cls, dim: int) -> None:
+        """Generate a fresh basis, one base vector per modulus.
+
+        Args:
+        -   dim (int): The dimension of the base vectors.
+        """
+        rng = np.random.default_rng()
+        cls.basis = [cls.generate_base_vector(rng, mod, dim) for mod in cls.moduli]
+
+    @staticmethod
+    def _bind_power(vec: ArrayF64, num: int) -> ArrayF64:
+        """Raise a base vector to an integer binding power.
+
+        Equivalent to binding `vec` with itself `num` times, but evaluated in the
+        frequency domain so the result stays unitary for any `num`. A power of 0
+        gives the binding identity.
+
+        Args:
+        -   vec (ArrayF64): The base vector.
+        -   num (int): The binding power.
+
+        Returns:
+            The base vector raised to the given binding power.
+        """
+        return np.fft.ifft(np.fft.fft(vec) ** num).real
+
+    @classmethod
+    def number(
+        cls,
+        num: int,
+        dim: int,
+        alternative_basis: list[ArrayF64] | None = None,
+    ) -> Self:
+        """Create an TRHC vector from a number.
+
+        Args:
+        -   num (int): The number to convert.
+        -   dim (int): The dimension of the vector.
+        -   alternative_basis (list[ArrayF64] | None): An optional alternative basis to use.
+
+        Returns:
+            An TRHC vector representing the number.
+
+        Raises:
+        -   ValueError: If `alternative_basis` is provided and is empty.
+        -   ValueError: If the basis dimension does not match the dimension of the vector.
+        """
+
+        if not cls.basis:
+            cls.generate_basis(dim)
+
+        basis = cls.basis
+
+        if alternative_basis is not None and len(alternative_basis) == 0:
+            raise ValueError("alternative_basis must not be empty")
+        elif alternative_basis is not None and isinstance(
+            alternative_basis[0], np.ndarray
+        ):
+            basis = alternative_basis
+
+        if basis[0].shape[0] != dim:
+            raise ValueError("basis dimension must match dim")
+
+        rhc_num = cls._bind_power(basis[0], num)
+        for i in range(1, len(basis)):
+            rhc_num = cls.bind(rhc_num, cls._bind_power(basis[i], num))
+
+        return cls(rhc_num)
+
+    @classmethod
+    def residue_add(cls, x: ArrayF64, y: ArrayF64) -> ArrayF64:
+        """Perform TRHC arithmetical addition.
+
+        Args:
+        -   x (ArrayF64): The first vector.
+        -   y (ArrayF64): The second vector.
+
+        Returns:
+            The result of the addition.
+        """
+        return cls.bind(x, y)
+
+    @classmethod
+    def residue_sub(cls, x: ArrayF64, y: ArrayF64) -> ArrayF64:
+        """Perform TRHC arithmetical subtraction.
+
+        Args:
+        -   x (ArrayF64): The first vector.
+        -   y (ArrayF64): The second vector.
+
+        Returns:
+            The result of the subtraction.
+        """
+        return cls.unbind(x, y)
+```
+
+aTRHC will be important later on for us when we deal with numerical
+representations.
+
+## VSA Lists
+
+So far all we have seen is how to define a VSA. This is useful for investigating
+the features of VSAs, but purely giving definitions does not give an intuitive
+feel for how to use VSAs in defining networks.
+Recall that, by @def-lists, a lists are made up of two kinds of objects:
+$\operatorname{Nil}_A$, denoting the empty list, and $\operatorname{Cons}(x, l)$,
+denoting the combination of $x$ with the list $l$.
+
+Atomic objects like $\operatorname{Nil}_A$ are represented in VSAs by randomly
+sampled vectors from the pattern set of the VSA.
+For ease of use, we store them in maps called *codebooks*, $\mathsf{C}$,
+and index the vectors by names[^3]. 
+Let $\mathbf{nil}$ be sampled in the pattern set of some VSA, $\mathcal{V}$. 
+
+[^3]: For the following, when we define a new pattern by bolded name, assume
+that we are sampling some vector from the given VSA's pattern set, and then
+storing that pattern in the map $\mathsf{C}$. Future references of the can 
+be replaced by $\mathsf C (\alpha)$, where $\alpha$ is a metavariable
+picking out names. This distinction is similar to the philosophical distinction
+between *use* and *mentioning*.
+
+There are many potential ways for getting equivalent behavior to the constructor
+$\operatorname{List}(x, l)$. In the following, we will investigate three
+options: a *naïve* encoding that combines elements by binding; the *Kanerva*
+encoding, which combines elements by permutations; and the *role-filler* encoding,
+which tags elements by a *role* vector symbol.
+
+### Naïve encoding
+
+The *naïve* encoding of lists is a straightforward, though memory intensive,
+method for mirroring the behavior of lists. Recall, we have already defined
+a vector symbol $\mathbf{nil}$. Let $\mathbf a, \mathbf b, \dots$ be more
+arbitrary vector symbols from the pattern set of our VSA. Then to perform
+the naïve encoding. Then, we can encode a list as a plain binding:
+$$
+\begin{align*}
+\mathbf{a} \otimes l
+\end{align*}
+$$
+where $l$ is some previously bound expression. To destruct a list expression,
+consider the first case where $l = \mathbf{nil}$. Then, we can
+test if $l \sim \mathbf{nil} > \theta$, for some arbitrary threshold $\theta$.
+For the case where $l = \mathbf{a} \otimes l'$[^5], the head can be retrieved
+by unbinding $l$ by $l'$; and the tail can be retrieved by unbinding $l$
+by $\mathbf a$:
+$$
+\begin{align*}
+    \operatorname{car}(l) &= l' \otimes^{-1} (\mathbf a \otimes l'), \\
+    \operatorname{cdr}(l) &= \mathbf a \otimes^{-1} (\mathbf a \otimes l').
+\end{align*}
+$$
+
+[^5]: And hence, $l \sim \mathbf{nil} \approx 0$.
+
+The naïve approach can be operationalized using HRRs as follows:
+```{python}
+np.random.seed(41)
+D = 5_000
+theta = 0.3 # High theta because we don't use cleanup memories
+nil = HRR.new(D)
+a = HRR.new(D)
+
+# Constructing the list
+l = a * nil
+# List should be a distinct object from a and nil
+assert(l.sim(a) < theta)
+assert(l.sim(nil) < theta)
+
+# Destructing the list
+head = l / nil
+assert(head.sim(a) > (1 - theta))
+tail = l / a
+assert(tail.sim(nil) > (1 - theta))
+```
+Of course, while this approach is easy, it is not practible. For example, 
+suppose that we have some list $l$ and we do not know what elements it is composed
+of. VSAs, by nature, are opaque as to their contents without additional help.
+For example, we could decode the elements of the vector using a resonator
+network [@fradyResonatorNetworks12020], but this would defeat the purpose as
+we would already retrieve a fully factorized list. Another option
+would be to memoize arguments to the list constructor upon each call; but
+this would make the memory grow in size with every single call to the list 
+constructor. Therefore, we conclude that this approach is untenable. 
+
+### Kanerva encoding
+
+### Role-filler encoding
+
+::: {.bibliography}
+:::

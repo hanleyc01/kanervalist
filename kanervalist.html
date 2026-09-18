@@ -123,10 +123,33 @@ window.Quarto = {
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="quarto-light">
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists"><span class="header-section-number">2</span> Lists</a></li>
+  <li><a href="#vsahdc" id="toc-vsahdc" class="nav-link" data-scroll-target="#vsahdc"><span class="header-section-number">3</span> VSA/HDC</a>
+  <ul class="collapse">
+  <li><a href="#holographic-reduced-representations" id="toc-holographic-reduced-representations" class="nav-link" data-scroll-target="#holographic-reduced-representations"><span class="header-section-number">3.1</span> Holographic Reduced Representations</a></li>
+  <li><a href="#time-domain-residue-hyperdimensional-computing" id="toc-time-domain-residue-hyperdimensional-computing" class="nav-link" data-scroll-target="#time-domain-residue-hyperdimensional-computing"><span class="header-section-number">3.2</span> Time-domain Residue Hyperdimensional Computing</a></li>
+  </ul></li>
+  <li><a href="#vsa-lists" id="toc-vsa-lists" class="nav-link" data-scroll-target="#vsa-lists"><span class="header-section-number">4</span> VSA Lists</a>
+  <ul class="collapse">
+  <li><a href="#naïve-encoding" id="toc-naïve-encoding" class="nav-link" data-scroll-target="#naïve-encoding"><span class="header-section-number">4.1</span> ❌ Naïve encoding</a></li>
+  <li><a href="#kanerva-encoding" id="toc-kanerva-encoding" class="nav-link" data-scroll-target="#kanerva-encoding"><span class="header-section-number">4.2</span> ✅ Kanerva encoding</a></li>
+  <li><a href="#role-filler-encoding" id="toc-role-filler-encoding" class="nav-link" data-scroll-target="#role-filler-encoding"><span class="header-section-number">4.3</span> ✅ Role-filler encoding</a></li>
+  <li><a href="#comparing-rfp-and-kanerva-encodings" id="toc-comparing-rfp-and-kanerva-encodings" class="nav-link" data-scroll-target="#comparing-rfp-and-kanerva-encodings"><span class="header-section-number">4.4</span> Comparing RFP and Kanerva encodings</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+</div>
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
@@ -154,12 +177,12 @@ window.Quarto = {
 </header>
 
 
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<section id="introduction" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
 <p>Thought seems to be structured. How can networks of connected units like neurons have structure? McCulloch and Pitts demonstrated that, under certain assumptions, artificial neural networks are equivalent to a simple propositional logic <span class="citation" data-cites="mccullochPitts1942">(<a href="#ref-mccullochPitts1942" role="doc-biblioref">McCulloch and Pitts 1943</a>)</span>. So too has it been demonstrated that neural networks can exhibit the same systematic, compositional, and generative relations that psychological states are taken to have <span class="citation" data-cites="fodorConnectionismCognitiveArchitecture1988 smolenskyTensorProductVariable1990 plateHolographicReducedRepresentations1995 gaylerVectorSymbolicArchitectures2004">(see <a href="#ref-fodorConnectionismCognitiveArchitecture1988" role="doc-biblioref">Fodor and Pylyshyn 1988</a>; <a href="#ref-smolenskyTensorProductVariable1990" role="doc-biblioref">Smolensky 1990</a>; and also <a href="#ref-plateHolographicReducedRepresentations1995" role="doc-biblioref">Plate 1995</a>; <a href="#ref-gaylerVectorSymbolicArchitectures2004" role="doc-biblioref">Gayler 2004</a>)</span>. Likewise, programming languages like the linearly typed lambda calculus <span class="citation" data-cites="velez-ginorioCompilingLinearNeurons2026 velez-ginorioCompilingRecurrentNeurons2026">(<a href="#ref-velez-ginorioCompilingLinearNeurons2026" role="doc-biblioref">Velez-Ginorio et al. 2026a</a>; and <a href="#ref-velez-ginorioCompilingRecurrentNeurons2026" role="doc-biblioref">Velez-Ginorio et al. 2026b</a>)</span> and LISP <span class="citation" data-cites="tomkins-flanaganHeyPenttiWe2025 hanleyHeyPenttiWe2025">(<a href="#ref-tomkins-flanaganHeyPenttiWe2025" role="doc-biblioref">Tomkins-Flanagan and Kelly 2025</a>; <a href="#ref-hanleyHeyPenttiWe2025" role="doc-biblioref">Hanley, Tomkins-Flanagan, and Kelly 2025</a>)</span> are able to be represented Vector Symbolic Architectures, or Hyperdimensional Computing (VSA/HDC) is a model of computation using high-dimensional vectors that supports compositional, systematic, and generative patterns <span class="citation" data-cites="smolenskyTensorProductVariable1990 plateHolographicReducedRepresentations1995 kanervaHyperdimensionalComputingIntroduction2009 gaylerVectorSymbolicArchitectures2004">(<a href="#ref-smolenskyTensorProductVariable1990" role="doc-biblioref">Smolensky 1990</a>; <a href="#ref-plateHolographicReducedRepresentations1995" role="doc-biblioref">Plate 1995</a>; <a href="#ref-kanervaHyperdimensionalComputingIntroduction2009" role="doc-biblioref">Kanerva 2009</a>; <a href="#ref-gaylerVectorSymbolicArchitectures2004" role="doc-biblioref">Gayler 2004</a>)</span>. A common data structure that VSA/HDC is required to represent are <em>lists</em>. In this document, we will explore two distinct methods for encoding lists in VSA. The first, what we call <em>Kanerva</em> lists after <span class="citation" data-cites="kanervaComputing10000bitWords2014">Kanerva (<a href="#ref-kanervaComputing10000bitWords2014" role="doc-biblioref">2014</a>)</span>; the second, we call <em>role-filler</em> lists, which are used in <span class="citation" data-cites="tomkins-flanaganHeyPenttiWe2025">Tomkins-Flanagan and Kelly (<a href="#ref-tomkins-flanaganHeyPenttiWe2025" role="doc-biblioref">2025</a>)</span> and <span class="citation" data-cites="hanleyHeyPenttiWe2025">Hanley, Tomkins-Flanagan, and Kelly (<a href="#ref-hanleyHeyPenttiWe2025" role="doc-biblioref">2025</a>)</span>.</p>
 </section>
-<section id="lists" class="level2">
-<h2 class="anchored" data-anchor-id="lists">Lists</h2>
+<section id="lists" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="lists"><span class="header-section-number">2</span> Lists</h2>
 <div id="def-lists" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 1 (Lists)</strong></span> A <em>list of</em> objects in set <span class="math inline">\(A\)</span> (or, a <em>list of <span class="math inline">\(A\)</span></em>), denoted by <span class="math inline">\(\text{List}(A)\)</span> is a set of objects recursively defined by the following conditions:</p>
 <ol type="1">
@@ -208,7 +231,7 @@ Listing&nbsp;2
 </figure>
 </div>
 <p>A less type-safe (and hence, easier) way of interacting with lists is through the <em>car</em> and <em>cdr</em> functions (following LISP), which correspond to the second branch in <a href="#lst-list-recursion" class="quarto-xref">Listing&nbsp;2</a>.</p>
-<div id="ec2640b7" class="cell" data-execution_count="3">
+<div id="6d6a25b9" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> car[T](<span class="bu">list</span>: List[T]) <span class="op">-&gt;</span> T:</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">match</span> <span class="bu">list</span>:</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">case</span> Nil():</span>
@@ -226,8 +249,8 @@ Listing&nbsp;2
 </div>
 <p>Once we have a definition of VSA/HDC, these basic operations will inform us how we are supposed to characterize the abstract behavior of list representations in VSAs. In other words, in order for us to represent the behavior of lists in VSA/HDC, we must provide (at least) the recursive definition in <a href="#lst-list-datatype" class="quarto-xref">Listing&nbsp;1</a>.</p>
 </section>
-<section id="vsahdc" class="level2">
-<h2 class="anchored" data-anchor-id="vsahdc">VSA/HDC</h2>
+<section id="vsahdc" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="vsahdc"><span class="header-section-number">3</span> VSA/HDC</h2>
 <p>VSA/HDC is a implementation of computation in high-dimensional vectors <span class="citation" data-cites="smolenskyTensorProductVariable1990">(or tensors, see <a href="#ref-smolenskyTensorProductVariable1990" role="doc-biblioref">Smolensky 1990</a>)</span> that provide neural networks with the ability to construct and manipulate <em>distributed</em> patterns that are compositional, systematic, and generative. Will provide a general definition of VSAs, then focus in on the two VSAs that we will use to explore list encodings: Holographic Reduced Representations <span class="citation" data-cites="plateHolographicReducedRepresentations1995">(HRRs, from <a href="#ref-plateHolographicReducedRepresentations1995" role="doc-biblioref">Plate 1995</a>)</span> and Time-domain Residue Hyperdimensional Computing <span class="citation" data-cites="kymnComputingResidueNumbers2024 voelkerSimulatingPredictingDynamical2021">(TRHC, counterpart to RHC from <a href="#ref-kymnComputingResidueNumbers2024" role="doc-biblioref">Kymn et al. 2024</a>; cf. <a href="#ref-voelkerSimulatingPredictingDynamical2021" role="doc-biblioref">Voelker et al. 2021</a>)</span>.</p>
 <div id="def-vsa" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 2</strong></span> A <em>Vector Symbolic Architecture</em> <span class="math inline">\(\mathcal{V}\)</span> is a structure <span class="math inline">\(\langle X^{D_1 \times \dots \times D_n}, \sim,  \otimes, \oplus \rangle\)</span>, where:</p>
@@ -317,8 +340,8 @@ Listing&nbsp;3
 </div>
 </figure>
 </div>
-<section id="holographic-reduced-representations" class="level3">
-<h3 class="anchored" data-anchor-id="holographic-reduced-representations">Holographic Reduced Representations</h3>
+<section id="holographic-reduced-representations" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="holographic-reduced-representations"><span class="header-section-number">3.1</span> Holographic Reduced Representations</h3>
 <p>Holographic Reduced Representations <span class="citation" data-cites="plateHolographicReducedRepresentations1995">(HRRs, <a href="#ref-plateHolographicReducedRepresentations1995" role="doc-biblioref">Plate 1995</a>)</span> are a VSA defined over <span class="math inline">\(D\)</span>-dimensional real vectors, which uses cosine similarity, element-wise multiplication in the Fourier domain, and element-wise summation to implement the VSA operations in <a href="#def-vsa" class="quarto-xref">Definition&nbsp;2</a>.</p>
 <div id="def-hrr" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 3 (HRRs)</strong></span> <em>Holographic Reduced Representations</em> (HRRs) are a VSA <span class="math inline">\(\mathcal{H}\)</span>, where</p>
@@ -490,8 +513,8 @@ Listing&nbsp;4
 </figure>
 </div>
 </section>
-<section id="time-domain-residue-hyperdimensional-computing" class="level3">
-<h3 class="anchored" data-anchor-id="time-domain-residue-hyperdimensional-computing">Time-domain Residue Hyperdimensional Computing</h3>
+<section id="time-domain-residue-hyperdimensional-computing" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="time-domain-residue-hyperdimensional-computing"><span class="header-section-number">3.2</span> Time-domain Residue Hyperdimensional Computing</h3>
 <p>Time-domain Residue Hyperdimensional Computing (TRHC) is a modification of the Residue Hyperdimensional Computing VSA <span class="citation" data-cites="kymnComputingResidueNumbers2024">(RHC, <a href="#ref-kymnComputingResidueNumbers2024" role="doc-biblioref">Kymn et al. 2024</a>)</span> which uses a residue number encoding to represent natural numbers and simple arithmetic in VSAs. Strictly speaking, according to <a href="#def-vsa" class="quarto-xref">Definition&nbsp;2</a> TRHC (and RHC) is not one single VSA but two distinct VSAs, since TRHC defines two binding operations that perform addition and multiplication over their encoded residue number. For our purposes, we will focus only on the variant with additive binding since the multiplicative binding operation is tedious to deal with.</p>
 <p>Unlike HRRs, TRHC requires some preliminary definitions. Namely, since TRHC was developed to represent numbers using a residue encoding, we have to define first define what that means.</p>
 <p>TRHC vectors must have the following properties:</p>
@@ -689,13 +712,13 @@ Listing&nbsp;5
 <p>aTRHC will be important later on for us when we deal with numerical representations.</p>
 </section>
 </section>
-<section id="vsa-lists" class="level2">
-<h2 class="anchored" data-anchor-id="vsa-lists">VSA Lists</h2>
+<section id="vsa-lists" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="vsa-lists"><span class="header-section-number">4</span> VSA Lists</h2>
 <p>So far all we have seen is how to define a VSA. This is useful for investigating the features of VSAs, but purely giving definitions does not give an intuitive feel for how to use VSAs in defining networks. Recall that, by <a href="#def-lists" class="quarto-xref">Definition&nbsp;1</a>, a lists are made up of two kinds of objects: <span class="math inline">\(\operatorname{Nil}_A\)</span>, denoting the empty list, and <span class="math inline">\(\operatorname{Cons}(x, l)\)</span>, denoting the combination of <span class="math inline">\(x\)</span> with the list <span class="math inline">\(l\)</span>.</p>
 <p>Atomic objects like <span class="math inline">\(\operatorname{Nil}_A\)</span> are represented in VSAs by randomly sampled vectors from the pattern set of the VSA. For ease of use, we store them in maps called <em>codebooks</em>, <span class="math inline">\(\mathsf{C}\)</span>, and index the vectors by names<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. Let <span class="math inline">\(\mathbf{nil}\)</span> be sampled in the pattern set of some VSA, <span class="math inline">\(\mathcal{V}\)</span>.</p>
 <p>There are many potential ways for getting equivalent behavior to the constructor <span class="math inline">\(\operatorname{List}(x, l)\)</span>. In the following, we will investigate three options: a <em>naïve</em> encoding that combines elements by binding; the <em>Kanerva</em> encoding, which combines elements by permutations; and the <em>role-filler</em> encoding, which tags elements by a <em>role</em> vector symbol.</p>
-<section id="naïve-encoding" class="level3">
-<h3 class="anchored" data-anchor-id="naïve-encoding">❌ Naïve encoding</h3>
+<section id="naïve-encoding" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="naïve-encoding"><span class="header-section-number">4.1</span> ❌ Naïve encoding</h3>
 <p>The <em>naïve</em> encoding of lists is a straightforward, though memory intensive, method for mirroring the behavior of lists. Recall, we have already defined a vector symbol <span class="math inline">\(\mathbf{nil}\)</span>. Let <span class="math inline">\(\mathbf a, \mathbf b, \dots\)</span> be more arbitrary vector symbols from the pattern set of our VSA. Then to perform the naïve encoding. Then, we can encode a list as a plain binding: <span class="math display">\[
 \operatorname{cons}_\text{Naive}(\mathbf a, \mathbf b) = \mathbf{a} \otimes l
 \]</span> where <span class="math inline">\(l\)</span> is some previously bound expression. To destruct a list expression, consider the first case where <span class="math inline">\(l = \mathbf{nil}\)</span>. Then, we can test if <span class="math inline">\(l \sim \mathbf{nil} &gt; \theta\)</span>, for some arbitrary threshold <span class="math inline">\(\theta\)</span>. For the case where <span class="math inline">\(l = \mathbf{a} \otimes l'\)</span><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>, the head can be retrieved by unbinding <span class="math inline">\(l\)</span> by <span class="math inline">\(l'\)</span>; and the tail can be retrieved by unbinding <span class="math inline">\(l\)</span> by <span class="math inline">\(\mathbf a\)</span>: <span class="math display">\[
@@ -705,7 +728,7 @@ Listing&nbsp;5
 \end{align*}
 \]</span></p>
 <p>The naïve approach can be operationalized using HRRs as follows:</p>
-<div id="5f3e4f41" class="cell" data-execution_count="8">
+<div id="c2239653" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">41</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> <span class="dv">5_000</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> <span class="fl">0.3</span> <span class="co"># High theta because we don't use cleanup memories</span></span>
@@ -731,8 +754,8 @@ Listing&nbsp;5
 </div>
 <p>For example, suppose that we have some list <span class="math inline">\(l\)</span> and we do not know what elements it is composed of. VSAs, by nature, are opaque as to their contents without additional help. For example, we could decode the elements of the vector using a resonator network <span class="citation" data-cites="fradyResonatorNetworks12020">(<a href="#ref-fradyResonatorNetworks12020" role="doc-biblioref">Frady et al. 2020</a>)</span>, but this would defeat the purpose as we would already retrieve a fully factorized list. Another option would be to memoize arguments to the list constructor upon each call. However, once again, how given an arbitrary <span class="math inline">\(l\)</span> how would we recover the head? Therefore, we must conclude that the naïve encoding is not a worthwhile encoding scheme for lists that have arbitrary members.</p>
 </section>
-<section id="kanerva-encoding" class="level3">
-<h3 class="anchored" data-anchor-id="kanerva-encoding">✅ Kanerva encoding</h3>
+<section id="kanerva-encoding" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="kanerva-encoding"><span class="header-section-number">4.2</span> ✅ Kanerva encoding</h3>
 <p>A similar lightweight intuition motivates what we call the <em>Kanerva</em> encoding <span class="citation" data-cites="kanervaComputing10000bitWords2014">(from <a href="#ref-kanervaComputing10000bitWords2014" role="doc-biblioref">Kanerva 2014</a>)</span>, and fairs better against <a href="#prp-minimal-encoding-debt" class="quarto-xref">Desideratum&nbsp;1</a>. We will include the previous <span class="math inline">\(\mathbf{nil}, \mathbf a, \mathbf b, \dots\)</span> in our codebook. Further, we will use three additional operations: the <em>left permutation</em> <span class="math inline">\(\Pi_\leftarrow\)</span>, the <em>right permutation</em> <span class="math inline">\(\Pi_\rightarrow\)</span>, and <em>cleanup memory</em> <span class="math inline">\(\mathcal{M}\)</span> where: <span class="math display">\[
 \begin{align*}
 \Pi_\leftarrow &amp;: X^{D_1 \times \dots \times D_n} \to X^{D_1 \times \dots \times D_n}, \\
@@ -748,7 +771,7 @@ Listing&nbsp;5
 \end{align*}
 \]</span> The cleanup memory <span class="math inline">\(\mathcal{M}\)</span> can optionally be applied to the result of <span class="math inline">\(\operatorname{car}_\text{Kanerva}\)</span> or <span class="math inline">\(\operatorname{cdr}_\text{Kanerva}\)</span>. By the distributive properties permutation and the properties of bundling, it should be the case that <span class="math inline">\(\Pi^{-1}_\leftarrow(l)\)</span> is closer to <span class="math inline">\(\mathbf a\)</span> than anything else<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>.</p>
 <p>Our method can be operationalized by the following:</p>
-<div id="49c0ab1c" class="cell" data-execution_count="9">
+<div id="6830f5fc" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> inv_perm(perm):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    inv <span class="op">=</span> np.arange(perm.size) <span class="co"># initialize inv</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    inv[perm] <span class="op">=</span> np.arange(perm.size) <span class="co"># create inv from perm</span></span>
@@ -780,8 +803,8 @@ Listing&nbsp;5
 </div>
 <p>How does our method fair against <a href="#prp-minimal-encoding-debt" class="quarto-xref">Desideratum&nbsp;1</a>? It is clear to see that if we have an arbitrary vector, as long as we have the basic symbols stored in our codebook, we can recursively destruct any list to recover the atomic constituent elements. The only downside is that we must rely on bundling, which might be lossy<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>.</p>
 </section>
-<section id="role-filler-encoding" class="level3">
-<h3 class="anchored" data-anchor-id="role-filler-encoding">✅ Role-filler encoding</h3>
+<section id="role-filler-encoding" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="role-filler-encoding"><span class="header-section-number">4.3</span> ✅ Role-filler encoding</h3>
 <p>The final list encoding strategy that we will investigate is the <em>role-filler</em> pair (RFP) strategy. Role-filler pairs are motivated by a similar idea: given arbitrary lists, how do we recover the constituent components? Instead of defining new permutation operators, the RFP strategy defines new atomic vector symbols to stand as <em>roles</em>.</p>
 <p>Let us have the same codebook as our Kanerva strategy, so <span class="math inline">\(\textbf{nil}, \textbf a, \dots\)</span>, as well as two new symbols: <span class="math inline">\(\mathbf{left}\)</span> and <span class="math inline">\(\mathbf{right}\)</span>. Furthermore, let us store all atomic symbols in a cleanup memory <span class="math inline">\(\mathcal{M}\)</span>. Then, list construction is as follows: <span class="math display">\[
     \operatorname{cons}_\text{RFP}(\mathbf a, l) = (\mathbf a \oplus \mathbf{left}) \otimes (l \oplus \mathbf{right}).
@@ -798,7 +821,7 @@ Listing&nbsp;5
 \end{align*}
 \]</span> where <span class="math inline">\(\kappa\)</span> is noise.</p>
 <p>This can be operationalized as:</p>
-<div id="281edfcc" class="cell" data-execution_count="10">
+<div id="124cfd54" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>left <span class="op">=</span> HRR.new(D)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>right <span class="op">=</span> HRR.new(D)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -824,8 +847,8 @@ Listing&nbsp;5
 <span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> tl.sim(nil <span class="op">+</span> right) <span class="op">&gt;</span> <span class="fl">0.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="comparing-rfp-and-kanerva-encodings" class="level3">
-<h3 class="anchored" data-anchor-id="comparing-rfp-and-kanerva-encodings">Comparing RFP and Kanerva encodings</h3>
+<section id="comparing-rfp-and-kanerva-encodings" class="level3" data-number="4.4">
+<h3 data-number="4.4" class="anchored" data-anchor-id="comparing-rfp-and-kanerva-encodings"><span class="header-section-number">4.4</span> Comparing RFP and Kanerva encodings</h3>
 <p>How do we weigh the two encodings against one another? If our only concern was <a href="#prp-minimal-encoding-debt" class="quarto-xref">Desideratum&nbsp;1</a>, then one does not outweight the other as they both define two additional objects. However, there is something to note about the RFP encoding. Repeated bindings are purportedly lossy. In order to combat this, one can introduce a <em>pointer</em> mechanism <span class="citation" data-cites="tomkins-flanaganHeyPenttiWe2025 hanleyHeyPenttiWe2025">(see <a href="#ref-tomkins-flanaganHeyPenttiWe2025" role="doc-biblioref">Tomkins-Flanagan and Kelly 2025</a>; <a href="#ref-hanleyHeyPenttiWe2025" role="doc-biblioref">Hanley, Tomkins-Flanagan, and Kelly 2025</a>)</span>. But this, strictly speaking, means that there are more objects involved (a new pointer allocation and storage mechanism). Therefore, we ought to prefer the Kanerva encoding if chosen without any other considerations.</p>
 <div class="bibliography">
 

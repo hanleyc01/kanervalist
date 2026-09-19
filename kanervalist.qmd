@@ -139,7 +139,7 @@ where:
 1. A *pattern set* $X^{D_1 \times \dots \times D_n}$,
 2. There is a *similarity* function
 $$
-x_1 \sim x_2 : X^{D_1 \times \dots \times D_n} \times X^{D_1 \times \dots \times D_n} \to [0, 1];
+x_1 \sim x_2 : X^{D_1 \times \dots \times D_n} \times X^{D_1 \times \dots \times D_n} \to [-1, 1];
 $$
 2. There is a *binding* function,
 $$
@@ -245,9 +245,9 @@ to implement the VSA operations in @def-vsa.
 *Holographic Reduced Representations* (HRRs) are a VSA $\mathcal{H}$, where
 
 1. The set of high-dimensional patterns is $\mathbb{R}^D$;
-2. The similarity function is *absolute cosine similarity*:
+2. The similarity function is *cosine similarity*:
 $$
-    x_1 \sim x_2 = \operatorname{abs}\left(\frac{x_1^\top x_2}{|x_1|_2 |x_2|_2}\right);
+    x_1 \sim x_2 = \frac{x_1^\top x_2}{|x_1|_2 |x_2|_2};
 $$
 3. Binding is *circular convolution*:
 $$
@@ -593,8 +593,9 @@ $\prod_i m_i$.
 Additive *Time-domain Residue Hyperdimensional Computing*[^2] (aTRHC) is a VSA with:
 
 1. A set of $D$-dimensional real vectors, $\mathbb{R}^D$;
-2. Binding via circular convolution, unbinding via circular correlation; and,
-3. Bundling via element-wise addition.
+2. Similarity is *cosine similarity*.
+3. Binding via circular convolution, unbinding via circular correlation; and,
+4. Bundling via element-wise addition.
 :::
 
 aTRHC is said to be *additive* because circular correlation obeys the following
